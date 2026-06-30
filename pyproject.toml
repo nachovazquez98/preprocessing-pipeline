@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "preprocessing-pipeline"
+version = "0.1.0"
+description = "Open-source preprocessing pipeline for tabular binary-classification datasets"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "scikit-learn>=1.3",
+    "pyarrow>=14.0",
+]
+
+[tool.setuptools]
+packages = ["preprocessing_pipeline"]
+
+[tool.setuptools.package-dir]
+preprocessing_pipeline = "."

@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+demo/__pycache__/
+demo/sample_train_preprocessed.csv
+demo/demo_reports/
+demo/demo_reports_cli/
+demo/demo_reports_cli_from_folder/
