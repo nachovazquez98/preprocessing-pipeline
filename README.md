@@ -112,6 +112,16 @@ The demo generates:
 - `demo/demo_reports/*.csv`
 - `demo/demo_reports/preprocessing-report.html`
 
+This demo is not just a smoke test. It is built to show the full project philosophy in a compact scenario:
+
+- a constant feature is removed early
+- a high-missing feature is removed in univariate screening
+- a special-value-heavy feature is removed in univariate screening
+- a drifting cohort feature is removed by PSI
+- a weak feature is removed in bivariate screening
+- a redundant feature pair is resolved by the correlation filter
+- the final dataset keeps a mix of numerical, categorical, and binary features
+
 ## Use It With Your Own Dataset
 
 Copy the demo config:
@@ -133,7 +143,7 @@ Then update these fields:
 - `cohort_column`
 - `reference_cohort`
 - `non_features_list`
-- `nominal_variables`
+- `categorical_variables`
 - `special_values`
 - `dictionary_special_values`
 - `thresholds`
@@ -166,7 +176,7 @@ Outputs:
 - `artifacts.data`
 - `artifacts.clean_data`
 - `artifacts.source_features`
-- `artifacts.vars_over_preproc`
+- `artifacts.preprocessing_exclusions`
 
 ### `univariate`
 
@@ -174,9 +184,9 @@ Checks each column independently for missingness, special-value usage, uniquenes
 
 Outputs:
 
-- `artifacts.num_report`
-- `artifacts.cat_report`
-- `artifacts.vars_over_miss`
+- `artifacts.numeric_report`
+- `artifacts.categorical_report`
+- `artifacts.univariate_exclusions`
 - `artifacts.candidate_features`
 
 ### `psi`
@@ -186,7 +196,7 @@ Measures whether a feature behaves consistently across cohorts and removes unsta
 Outputs:
 
 - `artifacts.psi_report`
-- `artifacts.vars_over_psi`
+- `artifacts.psi_exclusions`
 - updated `artifacts.candidate_features`
 
 ### `bivariate`
@@ -196,7 +206,7 @@ Measures whether a feature is useful for predicting the binary target and remove
 Outputs:
 
 - `artifacts.bivariate_report`
-- `artifacts.vars_over_gini`
+- `artifacts.bivariate_selected_features`
 - updated `artifacts.candidate_features`
 
 ### `missing`
@@ -215,7 +225,7 @@ Finds pairs of features that overlap too much and keeps the stronger one.
 Outputs:
 
 - `artifacts.correlation_report`
-- `artifacts.correlated_vars_dict`
+- `artifacts.correlated_feature_decisions`
 - `artifacts.selected_features`
 
 ### `transform`
@@ -236,17 +246,17 @@ The package makes its filtering decisions with a small set of formulas and thres
 
 This measures how much of a column is empty.
 
-`p_missing = n_missing / n_rows`
+`missing_rate = missing_count / n_rows`
 
-If `p_missing > max_p_missing`, the feature can be removed.
+If `missing_rate > max_p_missing`, the feature can be removed.
 
 ### Special-value rate
 
 This measures how often a column uses placeholders such as `-999`.
 
-`p_special = n_special / n_rows`
+`special_rate = special_count / n_rows`
 
-If `p_special > max_p_special`, the feature can be removed.
+If `special_rate > max_p_special`, the feature can be removed.
 
 ### PSI
 
@@ -287,8 +297,8 @@ If two variables are too correlated, the one with the lower Gini is removed.
 
 After a successful run, the most important outputs are:
 
-- `artifacts.num_report`
-- `artifacts.cat_report`
+- `artifacts.numeric_report`
+- `artifacts.categorical_report`
 - `artifacts.psi_report`
 - `artifacts.bivariate_report`
 - `artifacts.correlation_report`
@@ -316,7 +326,7 @@ Important fields:
 - `cohort_column`: cohort/date column used by PSI
 - `reference_cohort`: baseline cohort for stability comparison
 - `non_features_list`: columns to preserve but not treat as candidate features
-- `nominal_variables`: columns forced to behave as categorical
+- `categorical_variables`: columns forced to behave as categorical
 - `special_values`: global placeholders such as `-999`
 - `dictionary_special_values`: column-specific placeholders
 - `thresholds`: filtering thresholds

@@ -71,8 +71,8 @@ class PreprocessingPipeline:
     def get_report_csv(self, report_name: str = "preprocessing-report", base_path: str = "./preprocessing-reports"):
         export_reports_csv(
             {
-                "num_report": self.artifacts.num_report,
-                "cat_report": self.artifacts.cat_report,
+                "numeric_report": self.artifacts.numeric_report,
+                "categorical_report": self.artifacts.categorical_report,
                 "psi_report": self.artifacts.psi_report,
                 "bivariate_report": self.artifacts.bivariate_report,
                 "correlation_report": self.artifacts.correlation_report,
@@ -100,8 +100,8 @@ class PreprocessingPipeline:
         )
         export_reports_html(
             {
-                "Numeric Report": self.artifacts.num_report,
-                "Categorical Report": self.artifacts.cat_report,
+                "Numeric Report": self.artifacts.numeric_report,
+                "Categorical Report": self.artifacts.categorical_report,
                 "PSI Report": self.artifacts.psi_report,
                 "Bivariate Report": self.artifacts.bivariate_report,
                 "Correlation Report": self.artifacts.correlation_report,

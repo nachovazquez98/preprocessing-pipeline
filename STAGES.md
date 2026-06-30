@@ -13,7 +13,7 @@ Outputs:
 - `artifacts.data`
 - `artifacts.clean_data`
 - `artifacts.source_features`
-- `artifacts.vars_over_preproc`
+- `artifacts.preprocessing_exclusions`
 
 ## `univariate`
 
@@ -21,9 +21,9 @@ Purpose:
 Check each feature independently for missingness, special values, uniqueness, and obvious quality problems.
 
 Outputs:
-- `artifacts.num_report`
-- `artifacts.cat_report`
-- `artifacts.vars_over_miss`
+- `artifacts.numeric_report`
+- `artifacts.categorical_report`
+- `artifacts.univariate_exclusions`
 - `artifacts.candidate_features`
 
 ## `psi`
@@ -33,7 +33,7 @@ Measure drift between the reference cohort and the other cohorts.
 
 Outputs:
 - `artifacts.psi_report`
-- `artifacts.vars_over_psi`
+- `artifacts.psi_exclusions`
 - updated `artifacts.candidate_features`
 
 ## `bivariate`
@@ -43,7 +43,7 @@ Measure predictive strength against the binary target.
 
 Outputs:
 - `artifacts.bivariate_report`
-- `artifacts.vars_over_gini`
+- `artifacts.bivariate_selected_features`
 - updated `artifacts.candidate_features`
 
 ## `missing`
@@ -62,7 +62,7 @@ Reduce redundancy among remaining features.
 
 Outputs:
 - `artifacts.correlation_report`
-- `artifacts.correlated_vars_dict`
+- `artifacts.correlated_feature_decisions`
 - `artifacts.selected_features`
 
 ## `transform`

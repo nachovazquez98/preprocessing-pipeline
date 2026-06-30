@@ -20,9 +20,19 @@ def main():
     pipeline.get_report_html(base_path=str(reports_dir))
 
     print("Demo completed.")
-    print(f"Selected features: {artifacts.selected_features}")
+    print(f"Reference cohort: {config['reference_cohort']}")
+    print(f"Source features: {len(artifacts.source_features)}")
+    print(f"Preprocessing exclusions: {artifacts.preprocessing_exclusions}")
+    print(f"Univariate exclusions: {artifacts.univariate_exclusions}")
+    print(f"PSI exclusions: {sorted(artifacts.psi_exclusions.keys())}")
+    print(
+        "Bivariate removals: "
+        f"{artifacts.bivariate_report.loc[artifacts.bivariate_report['recommended_action'] == 'remove', 'name'].tolist()}"
+    )
+    print(f"Final selected features: {artifacts.selected_features}")
     if artifacts.transformed_data is not None:
         print(f"Output file: {config['path_df_output']}")
+        print(f"Reports directory: {reports_dir}")
         print(f"Output shape: {artifacts.transformed_data.shape}")
         print(artifacts.transformed_data.head().to_string(index=False))
 

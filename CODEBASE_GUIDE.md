@@ -116,7 +116,7 @@ Main outputs written into `PipelineArtifacts`:
 - `data`
 - `clean_data`
 - `source_features`
-- `vars_over_preproc`
+- `preprocessing_exclusions`
 
 ### `univariate`
 
@@ -128,9 +128,9 @@ Main job:
 
 Main outputs:
 
-- `num_report`
-- `cat_report`
-- `vars_over_miss`
+- `numeric_report`
+- `categorical_report`
+- `univariate_exclusions`
 - `candidate_features`
 
 ### `psi`
@@ -143,7 +143,7 @@ Main job:
 Main outputs:
 
 - `psi_report`
-- `vars_over_psi`
+- `psi_exclusions`
 - updated `candidate_features`
 
 ### `bivariate`
@@ -156,7 +156,7 @@ Main job:
 Main outputs:
 
 - `bivariate_report`
-- `vars_over_gini`
+- `bivariate_selected_features`
 - updated `candidate_features`
 
 ### `missing`
@@ -182,7 +182,7 @@ Main job:
 Main outputs:
 
 - `correlation_report`
-- `correlated_vars_dict`
+- `correlated_feature_decisions`
 - `selected_features`
 
 ### `transform`

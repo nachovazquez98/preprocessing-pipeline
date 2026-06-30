@@ -29,7 +29,7 @@ def normalize_config(config: Dict[str, Any]) -> Dict[str, Any]:
     normalized["path_data"] = config.get("path_data")
     normalized["path_df_output"] = config.get("path_df_output")
     normalized["non_features_list"] = list(config.get("non_features_list", []))
-    normalized["nominal_variables"] = list(config.get("nominal_variables", []))
+    normalized["categorical_variables"] = list(config.get("categorical_variables", []))
     normalized["special_values"] = list(config.get("special_values", []))
     normalized["dictionary_special_values"] = dict(config.get("dictionary_special_values", {}))
 

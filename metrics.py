@@ -6,8 +6,17 @@ import pandas as pd
 from sklearn.metrics import roc_auc_score
 
 
-def is_categorical_feature(series: pd.Series, feature: str, nominal_variables: List[str]) -> bool:
-    if feature in nominal_variables:
+def is_binary_feature(series: pd.Series) -> bool:
+    non_null = series.dropna()
+    if non_null.empty:
+        return False
+    if pd.api.types.is_bool_dtype(series):
+        return True
+    return non_null.nunique() == 2
+
+
+def is_categorical_feature(series: pd.Series, feature: str, categorical_variables: List[str]) -> bool:
+    if feature in categorical_variables:
         return True
     return bool(
         pd.api.types.is_object_dtype(series)
@@ -15,6 +24,14 @@ def is_categorical_feature(series: pd.Series, feature: str, nominal_variables: L
         or pd.api.types.is_bool_dtype(series)
         or isinstance(series.dtype, pd.CategoricalDtype)
     )
+
+
+def get_feature_type_label(series: pd.Series, feature: str, categorical_variables: List[str]) -> str:
+    if is_binary_feature(series):
+        return "binary"
+    if is_categorical_feature(series, feature, categorical_variables):
+        return "categorical"
+    return "numerical"
 
 
 def get_column_special_values(feature: str, config: Dict[str, Any]) -> List[Any]:
