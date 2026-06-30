@@ -57,6 +57,12 @@ Run the demo:
 python demo/run_demo.py
 ```
 
+Run the small ML example:
+
+```bash
+python demo/run_ml_demo.py
+```
+
 Or use the generic CLI runner:
 
 ```bash
@@ -68,6 +74,8 @@ Outputs:
 - `sample_train_preprocessed.csv`
 - `demo_reports/*.csv`
 - `demo_reports/preprocessing-report.html`
+- `demo_reports/ml_demo_metrics.csv`
+- `demo_reports/ml_demo_coefficients.csv`
 
 The helper script also prints a short stage summary so you can quickly see:
 
@@ -75,6 +83,14 @@ The helper script also prints a short stage summary so you can quickly see:
 - which feature drifted
 - which features failed bivariate screening
 - which features survived into the final transformed dataset
+
+The ML example takes the final transformed dataset and trains a simple logistic-regression classifier:
+
+- training cohorts: all cohorts except the last one
+- holdout cohort: the last cohort
+- features: the final `selected_features` from the preprocessing pipeline
+
+This keeps the example small while showing the most important downstream use case: preprocessing first, then model training on the transformed dataset.
 
 ## Personalize It
 

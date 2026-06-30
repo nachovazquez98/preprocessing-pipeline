@@ -111,6 +111,8 @@ The demo generates:
 - `demo/sample_train_preprocessed.csv`
 - `demo/demo_reports/*.csv`
 - `demo/demo_reports/preprocessing-report.html`
+- `demo/demo_reports/ml_demo_metrics.csv`
+- `demo/demo_reports/ml_demo_coefficients.csv`
 
 This demo is not just a smoke test. It is built to show the full project philosophy in a compact scenario:
 
@@ -121,6 +123,7 @@ This demo is not just a smoke test. It is built to show the full project philoso
 - a weak feature is removed in bivariate screening
 - a redundant feature pair is resolved by the correlation filter
 - the final dataset keeps a mix of numerical, categorical, and binary features
+- the final transformed dataset can be used immediately in a small ML example
 
 ## Use It With Your Own Dataset
 
