@@ -27,6 +27,16 @@ The package answers six questions in order:
 
 The result is a cleaner, smaller, more consistent dataset plus the reports needed to understand how it was created.
 
+## Where To Go Next
+
+Depending on what you want to do:
+
+- use the package: continue with `Quick Start`
+- understand the stages in more detail: see `STAGES.md`
+- use it from a notebook: see `NOTEBOOK_USAGE.md`
+- understand how the code is organized: see `CODEBASE_GUIDE.md`
+- contribute to the project: see `CONTRIBUTING.md`
+
 ## Install
 
 Create a virtual environment:
@@ -384,6 +394,8 @@ python runner.py --config demo/demo_config.py --start utils --end bivariate
 - `example_config.py`: config template
 - `STAGES.md`: short stage reference
 - `NOTEBOOK_USAGE.md`: notebook-specific usage example
+- `CODEBASE_GUIDE.md`: contributor-oriented codebase map
+- `CONTRIBUTING.md`: setup, workflow, and contribution expectations
 - `pyproject.toml`: editable-install package configuration
 
 ## Notes
